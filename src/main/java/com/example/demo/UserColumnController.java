@@ -15,7 +15,7 @@ public class UserColumnController {
         this.userColumnService = userColumnService;
     }
 
-    @GetMapping("/user/id")
+    @GetMapping("/user")
     public List<Map<String, String>> getUserColumns() {
         return userColumnService.getRows();
     }
