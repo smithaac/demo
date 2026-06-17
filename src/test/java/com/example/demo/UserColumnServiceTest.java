@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.core.io.DefaultResourceLoader;
 
 import java.util.List;
-import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -14,12 +13,11 @@ class UserColumnServiceTest {
 
     @Test
     void getRows_returnsExpectedRows() {
-        List<Map<String, String>> rows = service.getRows();
+        List<UserRow> rows = service.getRows();
         assertThat(rows).hasSize(1);
-        assertThat(rows.get(0))
-                .containsEntry("id", "1")
-                .containsEntry("name", "Alice")
-                .containsEntry("email", "alice@example.com")
-                .containsEntry("createdAt", "2024-01-01");
+        assertThat(rows.get(0).id()).isEqualTo("1");
+        assertThat(rows.get(0).name()).isEqualTo("Alice");
+        assertThat(rows.get(0).email()).isEqualTo("alice@example.com");
+        assertThat(rows.get(0).createdAt()).isEqualTo("2024-01-01");
     }
 }
