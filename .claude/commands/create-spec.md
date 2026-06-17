@@ -1,6 +1,6 @@
 ---
 description: “spec cmd for any new feature”
-argument-hint: “step number and feature name ex: 2 login”
+argument-hint: “step number, feature name, and description ex: 2 login 'allow users to sign in and out'”
 allowed-tools: read, Bash(git *), Bash(mkdir *)
 
 ---
@@ -22,7 +22,10 @@ Extract :
 - only a-z and 0-9
 - ex: login-logout
 
-Ask user questions if above 3 can't be inferred from arguements
+4. 'description' - short sentence explaining what the feature does
+- optional: if not provided, infer from feature_title or ask the user
+
+Ask user questions if the above can't be inferred from arguements
 
 ## Step 2 - Research codebase
 
@@ -36,7 +39,7 @@ Ask user questions if above 3 can't be inferred from arguements
 
 ## Overview
 
-what the feature is about
+Use 'description' as the starting point. Expand into 2-3 sentences explaining what the feature does and why.
 
 ## Depends on
 
