@@ -1,6 +1,8 @@
 package com.example.demo;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -17,5 +19,11 @@ public class UserColumnController {
     @GetMapping("/user")
     public List<UserRow> getUserColumns() {
         return userColumnService.getRows();
+    }
+
+    @GetMapping("/user/{id}")
+    public ResponseEntity<UserRow> getUserById(@PathVariable String id) {
+        UserRow row = userColumnService.getById(id);
+        return row != null ? ResponseEntity.ok(row) : ResponseEntity.notFound().build();
     }
 }

@@ -20,6 +20,13 @@ public class UserColumnService {
         this.resourceLoader = resourceLoader;
     }
 
+    public UserRow getById(String id) {
+        return getRows().stream()
+                .filter(row -> row.id().equals(id))
+                .findFirst()
+                .orElse(null);
+    }
+
     public List<UserRow> getRows() {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(
                 resourceLoader.getResource("classpath:user.csv").getInputStream()))) {

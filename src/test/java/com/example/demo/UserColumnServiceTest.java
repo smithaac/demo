@@ -12,6 +12,18 @@ class UserColumnServiceTest {
     private final UserColumnService service = new UserColumnService(new DefaultResourceLoader());
 
     @Test
+    void getById_returnsMatchingRow() {
+        UserRow row = service.getById("1");
+        assertThat(row).isNotNull();
+        assertThat(row.name()).isEqualTo("Alice");
+    }
+
+    @Test
+    void getById_returnsNullForMissingId() {
+        assertThat(service.getById("999")).isNull();
+    }
+
+    @Test
     void getRows_returnsExpectedRows() {
         List<UserRow> rows = service.getRows();
         assertThat(rows).hasSize(1);
