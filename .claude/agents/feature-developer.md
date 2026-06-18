@@ -99,3 +99,56 @@ Review findings:
 ```
 
 Wait for the user to review warnings and infos before closing out.
+
+---
+
+## Phase 6 — Push branch and open PR
+
+Once the user has reviewed the Phase 5 findings (or if there are no warnings/infos to resolve), push the feature branch and open a pull request.
+
+### 6a — Push the branch
+
+The git remote for this project is named **demo** (not origin).
+
+```bash
+git push -u demo HEAD
+```
+
+If the push fails, report the exact error and stop. Do not force-push.
+
+### 6b — Create the pull request
+
+Use the `gh` CLI to open a PR targeting `main`:
+
+```bash
+gh pr create \
+  --base main \
+  --title "feat(<step_num>-<feature_slug>): <feature_title>" \
+  --body "$(cat <<'EOF'
+## Summary
+<bullet list of key changes made in Phase 3>
+
+## Test plan
+- [ ] Build passes (`./mvnw clean package`)
+- [ ] All tests pass (`./mvnw test`)
+- [ ] Code review findings resolved
+
+🤖 Generated with Claude Code
+EOF
+)"
+```
+
+Substitute `<step_num>`, `<feature_slug>`, and `<feature_title>` from the spec created in Phase 1.
+
+### 6c — Report
+
+Print:
+
+```
+PR created successfully.
+URL:    <pr-url>
+Title:  <pr-title>
+Base:   main ← feature/<step_num>-<feature_slug>
+```
+
+If the push or PR creation fails, report the failing command and exact error output.
